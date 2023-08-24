@@ -393,8 +393,8 @@ impl<T: Send + 'static> Promise<T> {
 
     /// Abort the running task spawned by [`Self::spawn_async`].
     #[cfg(feature = "tokio")]
-    pub fn abort(self) {
-        if let Some(join_handle) = self.join_handle {
+    pub fn abort(&self) {
+        if let Some(join_handle) = &self.join_handle {
             join_handle.abort();
         }
     }
